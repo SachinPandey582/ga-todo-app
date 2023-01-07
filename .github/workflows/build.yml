@@ -26,7 +26,11 @@ jobs:
       - name: install Dependencies
         run: npm ci
       - name: Build Project
-        run: npm run build    
+        run: npm run build  
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./build  
 
   deploy:
     runs-on: ubuntu-latest
