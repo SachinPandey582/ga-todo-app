@@ -20,3 +20,13 @@ jobs:
       - name: Build Project
         run: npm run build    
 
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to Github
+        id: deployment
+        uses: action/deploy-pages@v1
